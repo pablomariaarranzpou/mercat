@@ -11,6 +11,10 @@ package prog2.model;
  */
 public class ClientEstandard extends Client{
 
+    public ClientEstandard(String id, String correu, String adreça) {
+        super(id, correu, adreça);
+    }
+
     @Override
     public String tipusClient() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
