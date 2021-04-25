@@ -5,10 +5,12 @@
  */
 package prog2.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Pablo
  */
-public class LlistaArticles extends Llista{
+public class LlistaArticles extends Llista<Article> implements Serializable{
     
 }

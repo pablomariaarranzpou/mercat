@@ -5,6 +5,7 @@
  */
 package prog2.model;
 
+import java.io.Serializable;
 import java.util.List;
 import prog2.vista.MercatException;
 
@@ -12,7 +13,7 @@ import prog2.vista.MercatException;
  *
  * @author Pablo
  */
-public class Dades implements InDades{
+public class Dades implements InDades, Serializable{
 
     @Override
     public void afegirArticle(String id, String nom, float preu, int temps, boolean admetUrgent) throws MercatException {
