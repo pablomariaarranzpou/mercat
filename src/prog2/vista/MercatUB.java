@@ -101,10 +101,13 @@ public class MercatUB {
 
             switch (opcionMenu) {
                 case M_Opcion_1_GestioArticles:
+                    gestioMenuArticles(sc);
                     break;
                 case M_Opcion_2_GestioClients:
+                    gestioMenuClients(sc);
                     break;
                 case M_Opcion_3_GestioComandes:
+                    gestioMenuComandes(sc);
                     break;
                 case M_Opcion_4_GuardarDades:
                     break;
@@ -126,7 +129,7 @@ public class MercatUB {
 
         // Assignar una descripción a cada una de las opciones
         //  - OPCIONAL - Por defecto enseña el nombre de la opción
-        menuMercat.setDescripcions(descMenu);
+        menuMercat.setDescripcions(descMenu_Articles);
 
         // Variable (de tipo enumerado igual a las opciones del menu) que contiene la opcion escogida
         MercatUB.OpcionesMenu_Articles opcionMenu;
@@ -157,7 +160,7 @@ public class MercatUB {
 
         // Assignar una descripción a cada una de las opciones
         //  - OPCIONAL - Por defecto enseña el nombre de la opción
-        menuMercat.setDescripcions(descMenu);
+        menuMercat.setDescripcions(descMenu_Comandes);
 
         // Variable (de tipo enumerado igual a las opciones del menu) que contiene la opcion escogida
         MercatUB.OpcionesMenu_Comandes opcionMenu;
@@ -193,7 +196,7 @@ public class MercatUB {
 
         // Assignar una descripción a cada una de las opciones
         //  - OPCIONAL - Por defecto enseña el nombre de la opción
-        menuMercat.setDescripcions(descMenu);
+        menuMercat.setDescripcions(descMenu_Clients);
 
         // Variable (de tipo enumerado igual a las opciones del menu) que contiene la opcion escogida
         MercatUB.OpcionesMenu_Clients opcionMenu;

@@ -16,6 +16,9 @@ public class IniciadorMercatUB {
      */
     public static void main(String[] args) {
         
+        MercatUB mercat = new MercatUB();
+        mercat.gestioMercatUb();
+        
     }
     
 }
