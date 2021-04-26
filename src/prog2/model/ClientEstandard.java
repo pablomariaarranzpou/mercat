@@ -9,25 +9,25 @@ package prog2.model;
  *
  * @author Pablo
  */
-public class ClientEstandard extends Client{
+public class ClientEstandard extends Client {
 
-    public ClientEstandard(String id, String correu, String adreça) {
-        super(id, correu, adreça);
+    public ClientEstandard(String nom, String correu, String adreça) {
+        super(nom, correu, adreça);
     }
 
     @Override
     public String tipusClient() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "Estandard";
     }
 
     @Override
     public float calcMensual() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return 0;   // Els clients estàndard no paguen mensualitat
     }
 
     @Override
     public float descompteEnv() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return 0; // Els clients estàndard no reben descomptes en l'enviament.
     }
-    
+
 }

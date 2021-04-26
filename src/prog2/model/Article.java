@@ -12,6 +12,7 @@ import java.time.Duration;
  * @author Pablo
  */
 public class Article {
+
     String _identificador;
     String _nom;
     float _preu;
@@ -19,14 +20,14 @@ public class Article {
     Duration _tempsFinsEnviament;
 
     public Article(String identificador, String nom, float preu,
-        boolean permetEnviamentUrgent, Duration tempsFinsEnviament){
+            boolean permetEnviamentUrgent, Duration tempsFinsEnviament) {
         _identificador = identificador;
         _nom = nom;
         _preu = preu;
         _permetEnviamentUrgent = permetEnviamentUrgent;
         _tempsFinsEnviament = tempsFinsEnviament;
     }
-    
+
     public String getIdentificador() {
         return _identificador;
     }
@@ -70,12 +71,11 @@ public class Article {
     @Override
     public String toString() {
         String s = "Id=" + _identificador;
-        s += ", Nom=Artícle " + _nom;
+        s += ", Nom=" + _nom;
         s += ", Preu=" + _preu;
         s += ", Temps fins enviament=" + _tempsFinsEnviament.getSeconds();
         s += ", Enviament Urgent=" + String.valueOf(_permetEnviamentUrgent);
         return s;
     }
-    
-    
+
 }
