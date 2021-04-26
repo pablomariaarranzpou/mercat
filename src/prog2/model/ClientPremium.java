@@ -9,25 +9,25 @@ package prog2.model;
  *
  * @author Pablo
  */
-public class ClientPremium extends Client{
+public class ClientPremium extends Client {
 
-    public ClientPremium(String id, String correu, String adreça) {
-        super(id, correu, adreça);
+    public ClientPremium(String nom, String correu, String adreça) {
+        super(nom, correu, adreça);
     }
 
     @Override
     public String tipusClient() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "Premium";
     }
 
     @Override
     public float calcMensual() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return 4f; // Els clients premium paguen una mensualitat de 4 euros.
     }
 
     @Override
     public float descompteEnv() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return 20f; // Els clients premium reben un 20% de descompte en l'enviament.
     }
-    
+
 }
