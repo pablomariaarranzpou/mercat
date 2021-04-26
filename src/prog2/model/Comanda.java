@@ -40,6 +40,10 @@ public abstract class Comanda {
 
     public abstract float preuEnviament();
     
+    public Article getArticle(){
+        return _article;
+    }
+    
     @Override
     public String toString(){
         String s = "";

@@ -21,12 +21,12 @@ public class Article {
     long _tempsFinsEnviament;
 
     public Article(String identificador, String nom, float preu,
-            boolean permetEnviamentUrgent, long tempsFinsEnviament) {
+            long tempsFinsEnviament, boolean permetEnviamentUrgent) {
         _identificador = identificador;
         _nom = nom;
         _preu = preu;
-        _permetEnviamentUrgent = permetEnviamentUrgent;
         _tempsFinsEnviament = tempsFinsEnviament;
+        _permetEnviamentUrgent = permetEnviamentUrgent;
     }
 
     public String getIdentificador() {
@@ -53,7 +53,7 @@ public class Article {
         _preu = preu;
     }
 
-    public boolean isPermetEnviamentUrgent() {
+    public boolean permetEnviamentUrgent() {
         return _permetEnviamentUrgent;
     }
 
@@ -63,7 +63,8 @@ public class Article {
 
     /**
      * Retorna en milisegons el temps fins enviament de l'article.
-     * @return 
+     *
+     * @return
      */
     public long getTempsFinsEnviament() {
         return TimeUnit.DAYS.toMillis(_tempsFinsEnviament);
