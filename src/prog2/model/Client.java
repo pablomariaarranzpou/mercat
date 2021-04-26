@@ -49,6 +49,10 @@ public abstract class Client {
 
     public abstract float calcMensual();
 
+    /**
+     * Retorna el descompte d'enviament en percentatge.
+     * @return 
+     */
     public abstract float descompteEnv();
 
     @Override

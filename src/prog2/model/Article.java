@@ -5,7 +5,8 @@
  */
 package prog2.model;
 
-import java.time.Duration;
+import java.time.Period;
+import java.util.concurrent.TimeUnit;
 
 /**
  *
@@ -17,10 +18,10 @@ public class Article {
     String _nom;
     float _preu;
     boolean _permetEnviamentUrgent;
-    Duration _tempsFinsEnviament;
+    long _tempsFinsEnviament;
 
     public Article(String identificador, String nom, float preu,
-            boolean permetEnviamentUrgent, Duration tempsFinsEnviament) {
+            boolean permetEnviamentUrgent, long tempsFinsEnviament) {
         _identificador = identificador;
         _nom = nom;
         _preu = preu;
@@ -60,11 +61,15 @@ public class Article {
         _permetEnviamentUrgent = permetEnviamentUrgent;
     }
 
-    public Duration getTempsFinsEnviament() {
-        return _tempsFinsEnviament;
+    /**
+     * Retorna en milisegons el temps fins enviament de l'article.
+     * @return 
+     */
+    public long getTempsFinsEnviament() {
+        return TimeUnit.DAYS.toMillis(_tempsFinsEnviament);
     }
 
-    public void setTempsFinsEnviament(Duration tempsFinsEnviament) {
+    public void setTempsFinsEnviament(long tempsFinsEnviament) {
         _tempsFinsEnviament = tempsFinsEnviament;
     }
 
@@ -73,7 +78,7 @@ public class Article {
         String s = "Id=" + _identificador;
         s += ", Nom=" + _nom;
         s += ", Preu=" + _preu;
-        s += ", Temps fins enviament=" + _tempsFinsEnviament.getSeconds();
+        s += ", Temps fins enviament=" + _tempsFinsEnviament;
         s += ", Enviament Urgent=" + String.valueOf(_permetEnviamentUrgent);
         return s;
     }
