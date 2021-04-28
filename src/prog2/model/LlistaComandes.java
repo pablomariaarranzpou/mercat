@@ -14,6 +14,12 @@ import prog2.vista.MercatException;
  */
 public class LlistaComandes extends Llista<Comanda> implements Serializable {
 
+    public LlistaComandes() {
+        super();
+    }
+    
+    
+
     @Override
     public void afegir(Comanda comanda) throws MercatException {
         if (comanda.getClass().getName().equals("ComandaUrgent") &&

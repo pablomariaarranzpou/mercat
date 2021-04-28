@@ -5,7 +5,15 @@
  */
 package prog2.model;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import prog2.vista.MercatException;
 
@@ -18,7 +26,13 @@ public class Dades implements InDades, Serializable{
     LlistaArticles _llistaArticles;
     LlistaClients _llistaClients;
     LlistaComandes _llistaComandes;
-    
+
+    public Dades() {
+        this._llistaArticles = new LlistaArticles();
+        this._llistaClients = new LlistaClients();
+        this._llistaComandes = new LlistaComandes();
+    }
+
     @Override
     public void afegirArticle(String id, String nom, float preu, int temps, boolean admetUrgent) throws MercatException {
         _llistaArticles.afegir(new Article(id, nom, preu, temps, admetUrgent));
@@ -26,7 +40,15 @@ public class Dades implements InDades, Serializable{
 
     @Override
     public List<String> recuperaArticles() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        //Com la clase List es abstracte cridem a la seva clase filla ArrayList
+        List<String> llista = new ArrayList<>();
+
+        for (int i = 0; i < _llistaArticles.getSize(); i++) {
+                llista.add(_llistaArticles.getAt(i).toString());
+            }
+
+        return llista;
     }
 
     @Override
@@ -41,7 +63,7 @@ public class Dades implements InDades, Serializable{
 
     @Override
     public List<String> recuperaClients() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return (List<String>) _llistaClients;
     }
 
     @Override
@@ -58,7 +80,7 @@ public class Dades implements InDades, Serializable{
 
     @Override
     public void esborrarComanda(int position) throws MercatException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        _llistaComandes.esborrar(_llistaComandes.getAt(position));
     }
 
     @Override
@@ -70,5 +92,31 @@ public class Dades implements InDades, Serializable{
     public List<String> recuperaComandesUrgents() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+    public void guardaDades(String path) throws MercatException, FileNotFoundException, IOException {
+        File fitxer = new File(path);
+        FileOutputStream fout;
+        ObjectOutputStream oos;
+        fout = new FileOutputStream(fitxer);
+        oos = new ObjectOutputStream(fout);
+        oos.writeObject(this);
+        oos.close();
+        fout.close();
+    }
+
+    public Dades carregaDades(String path) throws MercatException, IOException, ClassNotFoundException {
+        File fitxer = new File(path);
+        FileInputStream fin;
+        ObjectInputStream ois;
+        Dades carrega = null;
+
+        fin = new FileInputStream(fitxer);
+        ois = new ObjectInputStream(fin);
+        carrega = (Dades) ois.readObject();
+        fin.close();
+        ois.close();
+
+        return carrega;
+        
+
+    }
 }

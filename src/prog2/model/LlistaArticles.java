@@ -14,6 +14,12 @@ import prog2.vista.MercatException;
  */
 public class LlistaArticles extends Llista<Article> implements Serializable {
 
+    public LlistaArticles() {
+        super();
+    }
+
+    
+    
     @Override
     public void afegir(Article article) throws MercatException {
         if (contains(article)) {

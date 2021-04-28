@@ -6,7 +6,8 @@
 package prog2.vista;
 
 import java.util.Scanner;
-import prog2.model.Dades;
+import prog2.controlador.Controlador;
+
 
 /**
  *
@@ -14,11 +15,13 @@ import prog2.model.Dades;
  */
 public class MercatUB {
 
-    Dades _data;
+    Controlador _control;
 
-    public void gestioMercatUb() {
+    public void gestioMercatUb() throws MercatException {
         // Creación de un objeto para leer el input desde el teclado
         Scanner sc = new Scanner(System.in);
+        // Creació del controlador
+        _control = new Controlador();
         // Llamar a la funcion que gestiona el menu
         gestioMenu(sc);
     }
@@ -82,7 +85,7 @@ public class MercatUB {
         "Sortir", // Opcion 5
     };
 
-    public void gestioMenu(Scanner sc) {
+    public void gestioMenu(Scanner sc) throws MercatException {
         // Creación del objeto que representa el menu. El primer argumento del contructor es el nombre del menu
         Menu<OpcionesMenu> menuMercat = new Menu<>("Menu ", OpcionesMenu.values());
         //Menu<OpcionesMenu> menuEstacio = new Menu<>("Menu " + estacio.getNomEstacio(), OpcionesMenu.values());
@@ -122,7 +125,7 @@ public class MercatUB {
         } while (opcionMenu != OpcionesMenu.M_Opcion_6_Salir);
     }
 
-    public void gestioMenuArticles(Scanner sc) {
+    public void gestioMenuArticles(Scanner sc) throws MercatException {
         // Creación del objeto que representa el menu. El primer argumento del contructor es el nombre del menu
         Menu<MercatUB.OpcionesMenu_Articles> menuMercat = new Menu<>("Menu ", MercatUB.OpcionesMenu_Articles.values());
         //Menu<OpcionesMenu> menuEstacio = new Menu<>("Menu " + estacio.getNomEstacio(), OpcionesMenu.values());
@@ -141,8 +144,52 @@ public class MercatUB {
 
             switch (opcionMenu) {
                 case M_Opcion_1_AfegirArticle:
+                    
+                    String nom, id;
+                    float _preu;
+                    int _temps;
+                    boolean _admetUrgent = false;
+                    String ans;
+                    
+                    
+                    System.out.println("ID de l´Article:");
+                    id = sc.next();
+                    System.out.println("Nom de l´Article:");
+                    nom = sc.next();
+                    System.out.println("Temps? ");
+                    _temps = sc.nextInt();
+                    System.out.println("Preu?");
+                    _preu = sc.nextFloat();
+                    System.out.println("Admet urgent? (S/N)");
+                    ans = sc.next();
+                    ans = ans.toUpperCase();
+
+                    if (ans.charAt(0) == 'S') {
+                        _admetUrgent = true;
+                    } else if (ans.charAt(0) == 'N') {
+                        _admetUrgent = false;
+                    }
+                    while (ans.charAt(0) != 'S' && ans.charAt(0) != 'N') {
+
+                        System.out.println("Admet urgent? (S/N)");
+                        ans = sc.next();
+                        ans = ans.toUpperCase();
+
+                        if (ans.charAt(0) == 'S') {
+                            _admetUrgent = true;
+                        } else if (ans.charAt(0) == 'N') {
+                            _admetUrgent = false;
+                        }
+                    }
+                    try {
+                        _control.addArticle(id, nom, _preu, _temps, _admetUrgent);
+                    } catch (MercatException ex) {
+                        throw new MercatException("No s´ha pogut afegir el article");
+                    }
+
                     break;
                 case M_Opcion_2_MostrarArticles:
+                    _control.recuperarArticles();
                     break;
                 case M_Opcion_3_Salir:
                     break;
