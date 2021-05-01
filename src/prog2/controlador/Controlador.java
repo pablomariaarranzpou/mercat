@@ -71,7 +71,7 @@ public class Controlador {
     }
 
     public void recuperar() throws MercatException, IOException, ClassNotFoundException {
-        dades.carregaDades("dades.dat");
+        this.dades = dades.carregaDades("dades.dat");
     }
 
 }
