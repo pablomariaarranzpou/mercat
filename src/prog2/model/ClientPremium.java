@@ -5,11 +5,13 @@
  */
 package prog2.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Pablo
  */
-public class ClientPremium extends Client {
+public class ClientPremium extends Client implements Serializable{
 
     public ClientPremium(String nom, String correu, String adreça) {
         super(nom, correu, adreça);

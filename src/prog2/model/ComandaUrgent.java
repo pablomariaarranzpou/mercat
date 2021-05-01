@@ -5,6 +5,7 @@
  */
 package prog2.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
@@ -12,7 +13,7 @@ import java.util.concurrent.TimeUnit;
  *
  * @author janal
  */
-public class ComandaUrgent extends Comanda {
+public class ComandaUrgent extends Comanda implements Serializable{
 
     private final float _preuEnviament = 4; // Enviament comanda urgent = 4 euros
     private final long _tempsRebuda = 2; // Temps en rebre comanda normal = 1 dia

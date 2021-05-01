@@ -5,13 +5,14 @@
  */
 package prog2.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  * @author Pablo
  */
-public abstract class Comanda {
+public abstract class Comanda implements Serializable{
     Client _client;
     Article _article;
     int _quantitat;

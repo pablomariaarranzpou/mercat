@@ -5,11 +5,13 @@
  */
 package prog2.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Pablo
  */
-public abstract class Client {
+public abstract class Client implements Serializable{
 
     String _nom;
     String _correu;

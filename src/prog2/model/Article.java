@@ -5,14 +5,14 @@
  */
 package prog2.model;
 
-import java.time.Period;
+import java.io.Serializable;
 import java.util.concurrent.TimeUnit;
 
 /**
  *
  * @author Pablo
  */
-public class Article {
+public class Article implements Serializable{
 
     String _identificador;
     String _nom;
