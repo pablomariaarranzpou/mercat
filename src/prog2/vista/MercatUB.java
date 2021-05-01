@@ -5,9 +5,9 @@
  */
 package prog2.vista;
 
+import java.io.IOException;
 import java.util.Scanner;
 import prog2.controlador.Controlador;
-
 
 /**
  *
@@ -113,8 +113,22 @@ public class MercatUB {
                     gestioMenuComandes(sc);
                     break;
                 case M_Opcion_4_GuardarDades:
+
+                    try {
+                        _control.guardar();
+                    } catch (IOException ex) {
+                        System.err.println(ex.getMessage());;
+                    }
+
                     break;
                 case M_Opcion_5_CarregarDades:
+                    try {
+                        _control.recuperar();
+                    } catch (IOException ex) {
+                        System.err.println(ex.getMessage());
+                    } catch (ClassNotFoundException ex) {
+                        System.err.println(ex.getMessage());
+                    }
                     break;
                 case M_Opcion_6_Salir:
                     break;
@@ -144,14 +158,14 @@ public class MercatUB {
 
             switch (opcionMenu) {
                 case M_Opcion_1_AfegirArticle:
-                    
-                    String nom, id;
+
+                    String nom,
+                     id;
                     float _preu;
                     int _temps;
                     boolean _admetUrgent = false;
                     String ans;
-                    
-                    
+
                     System.out.println("ID de l´Article:");
                     id = sc.next();
                     System.out.println("Nom de l´Article:");
@@ -184,7 +198,7 @@ public class MercatUB {
                     try {
                         _control.addArticle(id, nom, _preu, _temps, _admetUrgent);
                     } catch (MercatException ex) {
-                        throw new MercatException("No s´ha pogut afegir el article");
+                        System.err.println(ex.getMessage());
                     }
 
                     break;
@@ -220,12 +234,50 @@ public class MercatUB {
             switch (opcionMenu) {
 
                 case M_Opcion_1_AfegirComandes:
+                    int posArticle,
+                     posClient;
+                    String esUrgent;
+
+                    _control.recuperarArticles();
+                    System.out.println("Quin article vol afegir a la comanda?(posicio)");
+                    posArticle = sc.nextInt();
+                    _control.recuperarClients();
+                    System.out.println("De quin article? (posicio)");
+                    posClient = sc.nextInt();
+                    System.out.println("Es Urgent?(s/n)");
+                    esUrgent = sc.next();
+
+                    while (!esUrgent.equals("s") && !esUrgent.equals("n")) {
+                        System.out.println("Resposta invàlida");
+                        System.out.println("Es Urgent?(s/n)");
+                        esUrgent = sc.next();
+                    }
+
+                    try {
+                        _control.addComanda(posArticle, posClient, posClient, true);
+                    } catch (MercatException ex) {
+                        System.err.println(ex.getMessage());
+                    }
                     break;
+
                 case M_Opcion_2_EsborrarComanda:
+                    int pos;
+                    _control.recuperarComandes();
+                    System.out.println("Quina comanda vol eliminar?");
+                    pos = sc.nextInt();
+
+                    try {
+                        _control.eliminarComanda(pos);
+                    } catch (MercatException ex) {
+                        System.err.println(ex.getMessage());
+                    }
+
                     break;
                 case M_Opcion_3_MostrarComandes:
+                    _control.recuperarComandes();
                     break;
                 case M_Opcion_4_MostrarComandesUrgents:
+                    _control.recuperarComandesUrgents();
                     break;
                 case M_Opcion_5_Salir:
                     break;
@@ -255,8 +307,43 @@ public class MercatUB {
 
             switch (opcionMenu) {
                 case M_Opcion_1_AfegirClient:
+                    String esPremium,
+                     correu,
+                     nom,
+                     adreca;
+
+                    System.out.println("El cient es premium o estandard?");
+                    esPremium = sc.next();
+
+                    while (!esPremium.equals("premium") && !esPremium.equals("estandard")) {
+                        System.out.println("Tipus de client no vàlid");
+                        System.out.println("El cient es premium o estandard?");
+                        esPremium = sc.next();
+                    }
+
+                    System.out.println("Correu del Client?");
+                    correu = sc.next();
+                    System.out.println("Nom del client?");
+                    nom = sc.next();
+                    System.out.println("Adreça del client?");
+                    adreca = sc.next();
+
+                    if (esPremium.equals("premium")) {
+                        try {
+                            _control.addClient(correu, nom, adreca, true);
+                        } catch (MercatException ex) {
+                            System.out.println(ex.getMessage());
+                        }
+                    } else {
+                        try {
+                            _control.addClient(correu, nom, adreca, false);
+                        } catch (MercatException ex) {
+                            System.out.println(ex.getMessage());
+                        }
+                    }
                     break;
                 case M_Opcion_2_MostrarClients:
+                    _control.recuperarClients();
                     break;
                 case M_Opcion_3_Salir:
                     break;

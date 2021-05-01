@@ -21,7 +21,7 @@ import prog2.vista.MercatException;
  *
  * @author Pablo
  */
-public class Dades implements InDades, Serializable{
+public class Dades implements InDades, Serializable {
 
     LlistaArticles _llistaArticles;
     LlistaClients _llistaClients;
@@ -40,13 +40,13 @@ public class Dades implements InDades, Serializable{
 
     @Override
     public List<String> recuperaArticles() {
-        
+
         //Com la clase List es abstracte cridem a la seva clase filla ArrayList
         List<String> llista = new ArrayList<>();
 
         for (int i = 0; i < _llistaArticles.getSize(); i++) {
-                llista.add(_llistaArticles.getAt(i).toString());
-            }
+            llista.add(_llistaArticles.getAt(i).toString());
+        }
 
         return llista;
     }
@@ -54,16 +54,23 @@ public class Dades implements InDades, Serializable{
     @Override
     public void afegirClient(String email, String nom, String adreca, boolean esPremium) throws MercatException {
         Client client;
-        if(esPremium)
+        if (esPremium) {
             client = new ClientPremium(nom, email, adreca);
-        else
+        } else {
             client = new ClientEstandard(nom, email, adreca);
+        }
         _llistaClients.afegir(client);
     }
 
     @Override
     public List<String> recuperaClients() {
-        return (List<String>) _llistaClients;
+        List<String> llista = new ArrayList<>();
+
+        for (int i = 0; i < _llistaClients.getSize(); i++) {
+            llista.add(_llistaClients.getAt(i).toString());
+        }
+
+        return llista;
     }
 
     @Override
@@ -71,10 +78,11 @@ public class Dades implements InDades, Serializable{
         Article article = _llistaArticles.getAt(articlePos);
         Client client = _llistaClients.getAt(clientPos);
         Comanda comanda;
-        if(esUrgent)
+        if (esUrgent) {
             comanda = new ComandaUrgent(client, article, quantitat);
-        else
+        } else {
             comanda = new ComandaNormal(client, article, quantitat);
+        }
         _llistaComandes.afegir(comanda);
     }
 
@@ -85,13 +93,29 @@ public class Dades implements InDades, Serializable{
 
     @Override
     public List<String> recuperaComandes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<String> llista = new ArrayList<>();
+
+        for (int i = 0; i < _llistaComandes.getSize(); i++) {
+            llista.add(_llistaComandes.getAt(i).toString());
+        }
+
+        return llista;
     }
 
     @Override
     public List<String> recuperaComandesUrgents() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<String> llista = new ArrayList<>();
+
+        for (int i = 0; i < _llistaComandes.getSize(); i++) {
+            if (_llistaComandes.getAt(i) instanceof ComandaUrgent) {
+                llista.add(_llistaComandes.getAt(i).toString());
+            }
+        }
+
+        return llista;
+
     }
+
     public void guardaDades(String path) throws MercatException, FileNotFoundException, IOException {
         File fitxer = new File(path);
         FileOutputStream fout;
@@ -116,7 +140,6 @@ public class Dades implements InDades, Serializable{
         ois.close();
 
         return carrega;
-        
 
     }
 }

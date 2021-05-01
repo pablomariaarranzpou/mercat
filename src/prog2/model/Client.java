@@ -51,7 +51,8 @@ public abstract class Client {
 
     /**
      * Retorna el descompte d'enviament en percentatge.
-     * @return 
+     *
+     * @return
      */
     public abstract float descompteEnv();
 
@@ -66,5 +67,5 @@ public abstract class Client {
         s += ", Mensualitat=" + calcMensual();
         return s;
     }
-    
+
 }
