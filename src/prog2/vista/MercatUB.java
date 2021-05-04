@@ -15,13 +15,13 @@ import prog2.controlador.Controlador;
  */
 public class MercatUB {
 
-    Controlador _control;
+    Controlador _controlador;
 
-    public void gestioMercatUb() throws MercatException {
+    public void gestioMercatUb() {
         // Creación de un objeto para leer el input desde el teclado
         Scanner sc = new Scanner(System.in);
         // Creació del controlador
-        _control = new Controlador();
+        _controlador = new Controlador();
         // Llamar a la funcion que gestiona el menu
         gestioMenu(sc);
     }
@@ -85,7 +85,7 @@ public class MercatUB {
         "Sortir", // Opcion 5
     };
 
-    public void gestioMenu(Scanner sc) throws MercatException {
+    public void gestioMenu(Scanner sc) {
         // Creación del objeto que representa el menu. El primer argumento del contructor es el nombre del menu
         Menu<OpcionesMenu> menuMercat = new Menu<>("Menu ", OpcionesMenu.values());
         //Menu<OpcionesMenu> menuEstacio = new Menu<>("Menu " + estacio.getNomEstacio(), OpcionesMenu.values());
@@ -113,20 +113,16 @@ public class MercatUB {
                     gestioMenuComandes(sc);
                     break;
                 case M_Opcion_4_GuardarDades:
-
                     try {
-                        _control.guardar();
+                        _controlador.guardar();
                     } catch (IOException ex) {
-                        System.err.println(ex.getMessage());;
+                        System.err.println(ex.getMessage());
                     }
-
                     break;
                 case M_Opcion_5_CarregarDades:
                     try {
-                        _control.recuperar();
-                    } catch (IOException ex) {
-                        System.err.println(ex.getMessage());
-                    } catch (ClassNotFoundException ex) {
+                        _controlador.recuperar();
+                    } catch (IOException | ClassNotFoundException ex) {
                         System.err.println(ex.getMessage());
                     }
                     break;
@@ -139,7 +135,7 @@ public class MercatUB {
         } while (opcionMenu != OpcionesMenu.M_Opcion_6_Salir);
     }
 
-    public void gestioMenuArticles(Scanner sc) throws MercatException {
+    public void gestioMenuArticles(Scanner sc) {
         // Creación del objeto que representa el menu. El primer argumento del contructor es el nombre del menu
         Menu<MercatUB.OpcionesMenu_Articles> menuMercat = new Menu<>("Menu ", MercatUB.OpcionesMenu_Articles.values());
         //Menu<OpcionesMenu> menuEstacio = new Menu<>("Menu " + estacio.getNomEstacio(), OpcionesMenu.values());
@@ -161,9 +157,9 @@ public class MercatUB {
 
                     String nom,
                      id;
-                    float _preu;
-                    int _temps;
-                    boolean _admetUrgent = false;
+                    float preu;
+                    int temps;
+                    boolean admetUrgent = false;
                     String ans;
 
                     System.out.println("ID de l´Article:");
@@ -171,39 +167,22 @@ public class MercatUB {
                     System.out.println("Nom de l´Article:");
                     nom = sc.next();
                     System.out.println("Temps? ");
-                    _temps = sc.nextInt();
+                    temps = sc.nextInt();
                     System.out.println("Preu?");
-                    _preu = sc.nextFloat();
+                    preu = sc.nextFloat();
                     System.out.println("Admet urgent? (S/N)");
                     ans = sc.next();
                     ans = ans.toUpperCase();
 
-                    if (ans.charAt(0) == 'S') {
-                        _admetUrgent = true;
-                    } else if (ans.charAt(0) == 'N') {
-                        _admetUrgent = false;
-                    }
-                    while (ans.charAt(0) != 'S' && ans.charAt(0) != 'N') {
-
-                        System.out.println("Admet urgent? (S/N)");
-                        ans = sc.next();
-                        ans = ans.toUpperCase();
-
-                        if (ans.charAt(0) == 'S') {
-                            _admetUrgent = true;
-                        } else if (ans.charAt(0) == 'N') {
-                            _admetUrgent = false;
-                        }
-                    }
+                    admetUrgent = checkIfAdmetUrgent(ans, admetUrgent, sc);
                     try {
-                        _control.addArticle(id, nom, _preu, _temps, _admetUrgent);
+                        _controlador.addArticle(id, nom, preu, temps, admetUrgent);
                     } catch (MercatException ex) {
                         System.err.println(ex.getMessage());
                     }
-
                     break;
                 case M_Opcion_2_MostrarArticles:
-                    _control.recuperarArticles();
+                    _controlador.recuperarArticles();
                     break;
                 case M_Opcion_3_Salir:
                     break;
@@ -212,6 +191,27 @@ public class MercatUB {
             }
 
         } while (opcionMenu != MercatUB.OpcionesMenu_Articles.M_Opcion_3_Salir);
+    }
+
+    private boolean checkIfAdmetUrgent(String ans, boolean admetUrgent, Scanner sc) {
+        if (ans.charAt(0) == 'S') {
+            admetUrgent = true;
+        } else if (ans.charAt(0) == 'N') {
+            admetUrgent = false;
+        }
+        while (ans.charAt(0) != 'S' && ans.charAt(0) != 'N') {
+
+            System.out.println("Admet urgent? (S/N)");
+            ans = sc.next();
+            ans = ans.toUpperCase();
+
+            if (ans.charAt(0) == 'S') {
+                admetUrgent = true;
+            } else if (ans.charAt(0) == 'N') {
+                admetUrgent = false;
+            }
+        }
+        return admetUrgent;
     }
 
     public void gestioMenuComandes(Scanner sc) {
@@ -237,24 +237,21 @@ public class MercatUB {
                     int posArticle,
                      posClient;
                     String esUrgent;
+                    boolean urgent = false;
 
-                    _control.recuperarArticles();
+                    _controlador.recuperarArticles();
                     System.out.println("Quin article vol afegir a la comanda?(posicio)");
                     posArticle = sc.nextInt();
-                    _control.recuperarClients();
+                    _controlador.recuperarClients();
                     System.out.println("De quin article? (posicio)");
                     posClient = sc.nextInt();
                     System.out.println("Es Urgent?(s/n)");
                     esUrgent = sc.next();
-
-                    while (!esUrgent.equals("s") && !esUrgent.equals("n")) {
-                        System.out.println("Resposta invàlida");
-                        System.out.println("Es Urgent?(s/n)");
-                        esUrgent = sc.next();
-                    }
+                    esUrgent = esUrgent.toLowerCase();
+                    urgent = checkIfIsUrgent(esUrgent, urgent, sc);
 
                     try {
-                        _control.addComanda(posArticle, posClient, posClient, true);
+                        _controlador.addComanda(posArticle, posClient, posClient, urgent);
                     } catch (MercatException ex) {
                         System.err.println(ex.getMessage());
                     }
@@ -262,22 +259,21 @@ public class MercatUB {
 
                 case M_Opcion_2_EsborrarComanda:
                     int pos;
-                    _control.recuperarComandes();
+                    _controlador.recuperarComandes();
                     System.out.println("Quina comanda vol eliminar?");
                     pos = sc.nextInt();
 
                     try {
-                        _control.eliminarComanda(pos);
+                        _controlador.eliminarComanda(pos);
                     } catch (MercatException ex) {
                         System.err.println(ex.getMessage());
                     }
-
                     break;
                 case M_Opcion_3_MostrarComandes:
-                    _control.recuperarComandes();
+                    _controlador.recuperarComandes();
                     break;
                 case M_Opcion_4_MostrarComandesUrgents:
-                    _control.recuperarComandesUrgents();
+                    _controlador.recuperarComandesUrgents();
                     break;
                 case M_Opcion_5_Salir:
                     break;
@@ -286,6 +282,21 @@ public class MercatUB {
             }
 
         } while (opcionMenu != MercatUB.OpcionesMenu_Comandes.M_Opcion_5_Salir);
+    }
+
+    private boolean checkIfIsUrgent(String esUrgent, boolean urgent, Scanner sc) {
+        if (esUrgent.equals("s")) {
+            urgent = true;
+        }
+        while (!esUrgent.equals("s") && !esUrgent.equals("n")) {
+            System.out.println("Resposta invàlida");
+            System.out.println("Es Urgent?(s/n)");
+            esUrgent = sc.next();
+            if (esUrgent.equals("s")) {
+                urgent = true;
+            }
+        }
+        return urgent;
     }
 
     public void gestioMenuClients(Scanner sc) {
@@ -307,20 +318,12 @@ public class MercatUB {
 
             switch (opcionMenu) {
                 case M_Opcion_1_AfegirClient:
-                    String esPremium,
-                     correu,
+                    String correu,
                      nom,
                      adreca;
+                    boolean premium = false;
 
-                    System.out.println("El cient es premium o estandard?");
-                    esPremium = sc.next();
-
-                    while (!esPremium.equals("premium") && !esPremium.equals("estandard")) {
-                        System.out.println("Tipus de client no vàlid");
-                        System.out.println("El cient es premium o estandard?");
-                        esPremium = sc.next();
-                    }
-
+                    premium = checkIfPremium(sc, premium);
                     System.out.println("Correu del Client?");
                     correu = sc.next();
                     System.out.println("Nom del client?");
@@ -328,22 +331,14 @@ public class MercatUB {
                     System.out.println("Adreça del client?");
                     adreca = sc.next();
 
-                    if (esPremium.equals("premium")) {
-                        try {
-                            _control.addClient(correu, nom, adreca, true);
-                        } catch (MercatException ex) {
-                            System.out.println(ex.getMessage());
-                        }
-                    } else {
-                        try {
-                            _control.addClient(correu, nom, adreca, false);
-                        } catch (MercatException ex) {
-                            System.out.println(ex.getMessage());
-                        }
+                    try {
+                        _controlador.addClient(correu, nom, adreca, premium);
+                    } catch (MercatException ex) {
+                        System.out.println(ex.getMessage());
                     }
                     break;
                 case M_Opcion_2_MostrarClients:
-                    _control.recuperarClients();
+                    _controlador.recuperarClients();
                     break;
                 case M_Opcion_3_Salir:
                     break;
@@ -353,5 +348,25 @@ public class MercatUB {
 
         } while (opcionMenu != MercatUB.OpcionesMenu_Clients.M_Opcion_3_Salir);
 
+    }
+
+    private boolean checkIfPremium(Scanner sc, boolean premium) {
+        String esPremium;
+        System.out.println("El cient es premium o estandard?");
+        esPremium = sc.next();
+        esPremium = esPremium.toLowerCase();
+        if (esPremium.equals("premium")) {
+            premium = true;
+        }
+        while (!esPremium.equals("premium") && !esPremium.equals("estandard")) {
+            System.out.println("Tipus de client no vàlid");
+            System.out.println("El cient es premium o estandard?");
+            esPremium = sc.next();
+            esPremium = esPremium.toLowerCase();
+            if (esPremium.equals("premium")) {
+                premium = true;
+            }
+        }
+        return premium;
     }
 }

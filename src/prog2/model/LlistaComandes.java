@@ -18,8 +18,6 @@ public class LlistaComandes extends Llista<Comanda> implements Serializable {
         super();
     }
     
-    
-
     @Override
     public void afegir(Comanda comanda) throws MercatException {
         if (comanda.getClass().getName().equals("ComandaUrgent") &&
@@ -29,5 +27,10 @@ public class LlistaComandes extends Llista<Comanda> implements Serializable {
             llista.add(comanda);
         }
     }
-
+    
+    @Override
+    public void esborrar(Comanda comanda) throws MercatException {
+        if(comanda.comandaEnviada()) throw new MercatException("La comanda ja ha estat enviada, no es pot borrar.");  
+        llista.remove(comanda);
+    }
 }

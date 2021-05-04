@@ -16,62 +16,62 @@ import prog2.vista.MercatException;
  */
 public class Controlador {
 
-    Dades dades;
+    Dades _dades;
 
     public Controlador() {
-        this.dades = new Dades();
+        _dades = new Dades();
     }
 
     public void addArticle(String id, String nom, float preu, int temps, boolean admetUrgent) throws MercatException {
-        dades.afegirArticle(id, nom, preu, temps, admetUrgent);
+        _dades.afegirArticle(id, nom, preu, temps, admetUrgent);
     }
 
     public void recuperarArticles() {
-        List<String> llista = dades.recuperaArticles();
+        List<String> llista = _dades.recuperaArticles();
         for (int i = 0; i < llista.size(); i++) {
             System.out.println(llista.get(i));
         }
     }
 
     public void addClient(String email, String nom, String adreca, boolean esPremium) throws MercatException {
-        dades.afegirClient(email, nom, adreca, esPremium);
+        _dades.afegirClient(email, nom, adreca, esPremium);
     }
 
     public void recuperarClients() {
-        List<String> llista = dades.recuperaClients();
+        List<String> llista = _dades.recuperaClients();
         for (int i = 0; i < llista.size(); i++) {
             System.out.println(llista.get(i));
         }
     }
 
     public void addComanda(int articlePos, int clientPos, int quantitat, boolean esUrgent) throws MercatException {
-        dades.afegirComanda(articlePos, clientPos, quantitat, esUrgent);
+        _dades.afegirComanda(articlePos, clientPos, quantitat, esUrgent);
     }
 
     public void recuperarComandes() {
-        List<String> llista = dades.recuperaComandes();
+        List<String> llista = _dades.recuperaComandes();
         for (int i = 0; i < llista.size(); i++) {
             System.out.println(llista.get(i));
         }
     }
 
     public void eliminarComanda(int pos) throws MercatException {
-        dades.esborrarComanda(pos);
+        _dades.esborrarComanda(pos);
     }
 
     public void recuperarComandesUrgents() {
-        List<String> llista = dades.recuperaComandesUrgents();
+        List<String> llista = _dades.recuperaComandesUrgents();
         for (int i = 0; i < llista.size(); i++) {
             System.out.println(llista.get(i));
         }
     }
 
-    public void guardar() throws MercatException, IOException {
-        dades.guardaDades("dades.dat");
+    public void guardar() throws IOException {
+        _dades.guardaDades("dades.dat");
     }
 
-    public void recuperar() throws MercatException, IOException, ClassNotFoundException {
-        this.dades = dades.carregaDades("dades.dat");
+    public void recuperar() throws IOException, ClassNotFoundException {
+        _dades = _dades.carregaDades("dades.dat");
     }
 
 }

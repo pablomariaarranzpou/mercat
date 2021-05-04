@@ -28,9 +28,9 @@ public class Dades implements InDades, Serializable {
     LlistaComandes _llistaComandes;
 
     public Dades() {
-        this._llistaArticles = new LlistaArticles();
-        this._llistaClients = new LlistaClients();
-        this._llistaComandes = new LlistaComandes();
+        _llistaArticles = new LlistaArticles();
+        _llistaClients = new LlistaClients();
+        _llistaComandes = new LlistaComandes();
     }
 
     @Override
@@ -116,7 +116,7 @@ public class Dades implements InDades, Serializable {
 
     }
 
-    public void guardaDades(String path) throws MercatException, FileNotFoundException, IOException {
+    public void guardaDades(String path) throws FileNotFoundException, IOException {
         File fitxer = new File(path);
         FileOutputStream fout;
         ObjectOutputStream oos;
@@ -127,7 +127,7 @@ public class Dades implements InDades, Serializable {
         fout.close();
     }
 
-    public Dades carregaDades(String path) throws MercatException, IOException, ClassNotFoundException {
+    public Dades carregaDades(String path) throws IOException, ClassNotFoundException {
         File fitxer = new File(path);
         FileInputStream fin;
         ObjectInputStream ois;
