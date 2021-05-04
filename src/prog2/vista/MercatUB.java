@@ -154,27 +154,16 @@ public class MercatUB {
 
             switch (opcionMenu) {
                 case M_Opcion_1_AfegirArticle:
-
-                    String nom,
-                     id;
-                    float preu;
-                    int temps;
-                    boolean admetUrgent = false;
-                    String ans;
-
                     System.out.println("ID de l´Article:");
-                    id = sc.next();
+                    String id = sc.next();
                     System.out.println("Nom de l´Article:");
-                    nom = sc.next();
+                    String nom = sc.next();
                     System.out.println("Temps? ");
-                    temps = sc.nextInt();
+                    int temps = sc.nextInt();
                     System.out.println("Preu?");
-                    preu = sc.nextFloat();
-                    System.out.println("Admet urgent? (S/N)");
-                    ans = sc.next();
-                    ans = ans.toUpperCase();
-
-                    admetUrgent = checkIfAdmetUrgent(ans, admetUrgent, sc);
+                    float preu = sc.nextFloat();
+                    boolean admetUrgent = checkIfAdmetUrgent(sc);
+                    
                     try {
                         _controlador.addArticle(id, nom, preu, temps, admetUrgent);
                     } catch (MercatException ex) {
@@ -193,7 +182,11 @@ public class MercatUB {
         } while (opcionMenu != MercatUB.OpcionesMenu_Articles.M_Opcion_3_Salir);
     }
 
-    private boolean checkIfAdmetUrgent(String ans, boolean admetUrgent, Scanner sc) {
+    private boolean checkIfAdmetUrgent(Scanner sc) {
+        boolean admetUrgent = false;
+        System.out.println("Admet urgent? (S/N)");
+        String ans = sc.next();
+        ans = ans.toUpperCase();
         if (ans.charAt(0) == 'S') {
             admetUrgent = true;
         } else if (ans.charAt(0) == 'N') {
@@ -258,10 +251,11 @@ public class MercatUB {
                     break;
 
                 case M_Opcion_2_EsborrarComanda:
-                    int pos;
-                    _controlador.recuperarComandes();
+                    if(!_controlador.recuperarComandes()){
+                        System.out.println("No hi ha comandes a mostrar.");
+                    }
                     System.out.println("Quina comanda vol eliminar?");
-                    pos = sc.nextInt();
+                    int pos = sc.nextInt();
 
                     try {
                         _controlador.eliminarComanda(pos);
@@ -270,7 +264,9 @@ public class MercatUB {
                     }
                     break;
                 case M_Opcion_3_MostrarComandes:
-                    _controlador.recuperarComandes();
+                    if(!_controlador.recuperarComandes()){
+                        System.out.println("No hi ha comandes a mostrar.");
+                    }
                     break;
                 case M_Opcion_4_MostrarComandesUrgents:
                     _controlador.recuperarComandesUrgents();

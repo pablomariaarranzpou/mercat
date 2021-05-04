@@ -6,6 +6,7 @@
 package prog2.controlador;
 
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.List;
 import prog2.model.Dades;
 import prog2.vista.MercatException;
@@ -28,9 +29,12 @@ public class Controlador {
 
     public boolean recuperarArticles() {
         List<String> llista = _dades.recuperaArticles();
-        if(llista.isEmpty()) return false;
-        for (int i = 0; i < llista.size(); i++) {
-            System.out.println(llista.get(i));
+        if (llista.isEmpty()) {
+            return false;
+        }
+        Iterator it = llista.iterator();
+        while (it.hasNext()) {
+            System.out.println(it.next());
         }
         return true;
     }
@@ -41,9 +45,12 @@ public class Controlador {
 
     public boolean recuperarClients() {
         List<String> llista = _dades.recuperaClients();
-        if(llista.isEmpty()) return false;
-        for (int i = 0; i < llista.size(); i++) {
-            System.out.println(llista.get(i));
+        if (llista.isEmpty()) {
+            return false;
+        }
+        Iterator it = llista.iterator();
+        while (it.hasNext()) {
+            System.out.println(it.next());
         }
         return true;
     }
@@ -52,22 +59,30 @@ public class Controlador {
         _dades.afegirComanda(articlePos, clientPos, quantitat, esUrgent);
     }
 
-    public void recuperarComandes() {
+    public boolean recuperarComandes() {
         List<String> llista = _dades.recuperaComandes();
-        for (int i = 0; i < llista.size(); i++) {
-            System.out.println(llista.get(i));
+        if (!llista.isEmpty()) {
+            return false;
         }
+        Iterator it = llista.iterator();
+        while (it.hasNext()) {
+            System.out.println(it.next());
+        }
+        return true;
     }
 
     public void eliminarComanda(int pos) throws MercatException {
         _dades.esborrarComanda(pos);
     }
 
-    public void recuperarComandesUrgents() {
+    public boolean recuperarComandesUrgents() {
         List<String> llista = _dades.recuperaComandesUrgents();
-        for (int i = 0; i < llista.size(); i++) {
-            System.out.println(llista.get(i));
+        if(!llista.isEmpty()) return false;
+        Iterator it = llista.iterator();
+        while(it.hasNext()) {
+            System.out.println(it.next());
         }
+        return true;
     }
 
     public void guardar() throws IOException {
