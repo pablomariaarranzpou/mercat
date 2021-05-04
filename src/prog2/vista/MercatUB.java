@@ -234,24 +234,24 @@ public class MercatUB {
             switch (opcionMenu) {
 
                 case M_Opcion_1_AfegirComandes:
-                    int posArticle,
-                     posClient;
-                    String esUrgent;
-                    boolean urgent = false;
-
-                    _controlador.recuperarArticles();
-                    System.out.println("Quin article vol afegir a la comanda?(posicio)");
-                    posArticle = sc.nextInt();
-                    _controlador.recuperarClients();
-                    System.out.println("De quin article? (posicio)");
-                    posClient = sc.nextInt();
-                    System.out.println("Es Urgent?(s/n)");
-                    esUrgent = sc.next();
-                    esUrgent = esUrgent.toLowerCase();
-                    urgent = checkIfIsUrgent(esUrgent, urgent, sc);
+                    if (!_controlador.recuperarArticles()) {
+                        System.out.println("No hi ha articles per afegir.");
+                        break;
+                    }
+                    System.out.println("Quin article vol afegir a la comanda? (posicio)");
+                    int posArticle = sc.nextInt() - 1;  // Index des de 1
+                    System.out.println("Quants?");
+                    int quantitat = sc.nextInt();
+                    if (!_controlador.recuperarClients()) {
+                        System.out.println("No hi ha clients. Afegeix-ne per crear una comanda.");
+                        break;
+                    }
+                    System.out.println("De quin client? (posicio)");
+                    int posClient = sc.nextInt() - 1; // Index des de 1
+                    boolean urgent = checkIfIsUrgent(sc);
 
                     try {
-                        _controlador.addComanda(posArticle, posClient, posClient, urgent);
+                        _controlador.addComanda(posArticle, posClient, quantitat, urgent);
                     } catch (MercatException ex) {
                         System.err.println(ex.getMessage());
                     }
@@ -284,7 +284,11 @@ public class MercatUB {
         } while (opcionMenu != MercatUB.OpcionesMenu_Comandes.M_Opcion_5_Salir);
     }
 
-    private boolean checkIfIsUrgent(String esUrgent, boolean urgent, Scanner sc) {
+    private boolean checkIfIsUrgent(Scanner sc) {
+        boolean urgent = false;
+        System.out.println("Es Urgent?(S/N)");
+        String esUrgent = sc.next();
+        esUrgent = esUrgent.toLowerCase();
         if (esUrgent.equals("s")) {
             urgent = true;
         }
@@ -292,6 +296,7 @@ public class MercatUB {
             System.out.println("Resposta invàlida");
             System.out.println("Es Urgent?(s/n)");
             esUrgent = sc.next();
+            esUrgent = esUrgent.toLowerCase();
             if (esUrgent.equals("s")) {
                 urgent = true;
             }
@@ -318,18 +323,14 @@ public class MercatUB {
 
             switch (opcionMenu) {
                 case M_Opcion_1_AfegirClient:
-                    String correu,
-                     nom,
-                     adreca;
-                    boolean premium = false;
-
-                    premium = checkIfPremium(sc, premium);
+                    boolean premium = checkIfPremium(sc);
                     System.out.println("Correu del Client?");
-                    correu = sc.next();
+                    String correu = sc.next();
                     System.out.println("Nom del client?");
-                    nom = sc.next();
+                    String nom = sc.next();
                     System.out.println("Adreça del client?");
-                    adreca = sc.next();
+                    sc.nextLine(); // nextLine extra per eliminar l'últim \n
+                    String adreca = sc.nextLine();
 
                     try {
                         _controlador.addClient(correu, nom, adreca, premium);
@@ -350,8 +351,9 @@ public class MercatUB {
 
     }
 
-    private boolean checkIfPremium(Scanner sc, boolean premium) {
+    private boolean checkIfPremium(Scanner sc) {
         String esPremium;
+        boolean premium = false;
         System.out.println("El cient es premium o estandard?");
         esPremium = sc.next();
         esPremium = esPremium.toLowerCase();

@@ -26,22 +26,26 @@ public class Controlador {
         _dades.afegirArticle(id, nom, preu, temps, admetUrgent);
     }
 
-    public void recuperarArticles() {
+    public boolean recuperarArticles() {
         List<String> llista = _dades.recuperaArticles();
+        if(llista.isEmpty()) return false;
         for (int i = 0; i < llista.size(); i++) {
             System.out.println(llista.get(i));
         }
+        return true;
     }
 
     public void addClient(String email, String nom, String adreca, boolean esPremium) throws MercatException {
         _dades.afegirClient(email, nom, adreca, esPremium);
     }
 
-    public void recuperarClients() {
+    public boolean recuperarClients() {
         List<String> llista = _dades.recuperaClients();
+        if(llista.isEmpty()) return false;
         for (int i = 0; i < llista.size(); i++) {
             System.out.println(llista.get(i));
         }
+        return true;
     }
 
     public void addComanda(int articlePos, int clientPos, int quantitat, boolean esUrgent) throws MercatException {

@@ -113,7 +113,6 @@ public class Dades implements InDades, Serializable {
         }
 
         return llista;
-
     }
 
     public void guardaDades(String path) throws FileNotFoundException, IOException {
