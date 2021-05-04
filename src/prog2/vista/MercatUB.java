@@ -269,7 +269,9 @@ public class MercatUB {
                     }
                     break;
                 case M_Opcion_4_MostrarComandesUrgents:
-                    _controlador.recuperarComandesUrgents();
+                    if(!_controlador.recuperarComandesUrgents()){
+                        System.out.println("No hi ha comandes urgents a mostrar.");
+                    }
                     break;
                 case M_Opcion_5_Salir:
                     break;
