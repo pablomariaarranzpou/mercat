@@ -6,6 +6,7 @@
 package prog2.model;
 
 import java.io.Serializable;
+import java.util.Iterator;
 import prog2.vista.MercatException;
 
 /**
@@ -29,8 +30,9 @@ public class LlistaClients extends Llista<Client> implements Serializable {
     }
 
     private boolean contains(Client client) {
-        for (int i = 0; i < llista.size(); i++) {
-            if (client.equals(llista.get(i))) {
+        Iterator it = llista.iterator();
+        while(it.hasNext()) {
+            if (client.equals(it.next())) {
                 return true;
             }
         }
