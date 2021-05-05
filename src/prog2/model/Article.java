@@ -20,6 +20,14 @@ public class Article implements Serializable{
     boolean _permetEnviamentUrgent;
     long _tempsFinsEnviament;
 
+    /**
+     *
+     * @param identificador
+     * @param nom
+     * @param preu
+     * @param tempsFinsEnviament
+     * @param permetEnviamentUrgent
+     */
     public Article(String identificador, String nom, float preu,
             long tempsFinsEnviament, boolean permetEnviamentUrgent) {
         _identificador = identificador;
@@ -29,34 +37,66 @@ public class Article implements Serializable{
         _permetEnviamentUrgent = permetEnviamentUrgent;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getIdentificador() {
         return _identificador;
     }
 
+    /**
+     *
+     * @param identificador
+     */
     public void setIdentificador(String identificador) {
         _identificador = identificador;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getNom() {
         return _nom;
     }
 
+    /**
+     *
+     * @param nom
+     */
     public void setNom(String nom) {
         _nom = nom;
     }
 
+    /**
+     *
+     * @return
+     */
     public float getPreu() {
         return _preu;
     }
 
+    /**
+     *
+     * @param preu
+     */
     public void setPreu(float preu) {
         _preu = preu;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean permetEnviamentUrgent() {
         return _permetEnviamentUrgent;
     }
 
+    /**
+     *
+     * @param permetEnviamentUrgent
+     */
     public void setPermetEnviamentUrgent(boolean permetEnviamentUrgent) {
         _permetEnviamentUrgent = permetEnviamentUrgent;
     }
@@ -70,10 +110,18 @@ public class Article implements Serializable{
         return TimeUnit.DAYS.toMillis(_tempsFinsEnviament);
     }
 
+    /**
+     *
+     * @param tempsFinsEnviament
+     */
     public void setTempsFinsEnviament(long tempsFinsEnviament) {
         _tempsFinsEnviament = tempsFinsEnviament;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         String s = "Id=" + _identificador;

@@ -6,11 +6,15 @@
 package prog2.vista;
 
 /**
- *
+ * Excepció Pirncipal del Porgrama.
  * @author Pablo
  */
 public class MercatException extends Exception {
 
+    /**
+     * Constructor de MercatException
+     * @param msj
+     */
     public MercatException(String msj) {
         super(msj);
     }

@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- *
+ * Classe Comanda classe abstracta que modelitza les comandes de la botiga
  * @author Pablo
  */
 public abstract class Comanda implements Serializable{
@@ -18,6 +18,12 @@ public abstract class Comanda implements Serializable{
     int _quantitat;
     Date _creacioComanda;
     
+    /**
+     * Constructor de la classe comanda
+     * @param client
+     * @param article
+     * @param quantitat
+     */
     public Comanda(Client client, Article article, int quantitat){
         _client = client;
         _article = article;
@@ -33,18 +39,42 @@ public abstract class Comanda implements Serializable{
         return _article.getPreu() * _quantitat;
     }
     
+    /**
+     * Métode abstracte que retorna el tipus de comanda.
+     * @return
+     */
     public abstract String tipusComanda();
 
+    /**
+     * Métode abstracte que retorna si una comanda ha siguit enviada
+     * @return
+     */
     public abstract boolean comandaEnviada();
 
+    /**
+     * Métode abstracte que retorna si una comanda ha sigut rebuda.
+     * @return
+     */
     public abstract boolean comandaRebuda();
 
+    /**
+     * Métode abstracte que retorna el preu d´enviament.
+     * @return
+     */
     public abstract float preuEnviament();
     
+    /**
+     * Métode que retorna el Article de la comanda.
+     * @return
+     */
     public Article getArticle(){
         return _article;
     }
     
+    /**
+     * Métode toString() de la classe Comanda.
+     * @return
+     */
     @Override
     public String toString(){
         String s = "";

@@ -6,12 +6,13 @@
 package prog2.vista;
 
 /**
- *
+ * Classe Principal
  * @author Pablo
  */
 public class IniciadorMercatUB {
 
     /**
+     * Métode Inciador del progama.
      * @param args the command line arguments
      */
     public static void main(String[] args) {

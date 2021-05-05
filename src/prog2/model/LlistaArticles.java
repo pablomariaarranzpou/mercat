@@ -15,10 +15,18 @@ import prog2.vista.MercatException;
  */
 public class LlistaArticles extends Llista<Article> implements Serializable {
 
+    /**
+     * Classe que hereta de Llista i modelitza una llista d’articles
+     */
     public LlistaArticles() {
         super();
     }
   
+    /**
+     * Métode per afegir Artices a la Llista
+     * @param article
+     * @throws MercatException
+     */
     @Override
     public void afegir(Article article) throws MercatException {
         if (contains(article)) {
@@ -27,7 +35,12 @@ public class LlistaArticles extends Llista<Article> implements Serializable {
             llista.add(article);
         }
     }
-
+    
+    /**
+     * Retorna true si l´Articla és ja a la llista.
+     * @param article
+     * @return 
+     */
     private boolean contains(Article article) {
         Iterator it = llista.iterator();
         while(it.hasNext()) {

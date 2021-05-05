@@ -10,16 +10,23 @@ import java.util.Iterator;
 import prog2.vista.MercatException;
 
 /**
- *
+ * Classe que hereta de Llista i modelitza una llista de clients. 
  * @author Pablo
  */
 public class LlistaClients extends Llista<Client> implements Serializable {
 
+    /**
+     * Constructor de LlistaClients
+     */
     public LlistaClients() {
         super();
     }
     
-    
+    /**
+     * Métode per afegir un objecte a LlistaClients
+     * @param client
+     * @throws MercatException
+     */
     @Override
     public void afegir(Client client) throws MercatException {
         if (contains(client)) {
@@ -28,7 +35,12 @@ public class LlistaClients extends Llista<Client> implements Serializable {
             llista.add(client);
         }
     }
-
+    
+    /**
+     * Métode que retorna true si un Client es a la llistaClients
+     * @param client
+     * @return 
+     */
     private boolean contains(Client client) {
         Iterator it = llista.iterator();
         while(it.hasNext()) {

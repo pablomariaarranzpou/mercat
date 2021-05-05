@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 /**
- *
+ * Classe que hereta de Comanda, i modelitza una comanda normal
  * @author janal
  */
 public class ComandaNormal extends Comanda implements Serializable{
@@ -18,15 +18,29 @@ public class ComandaNormal extends Comanda implements Serializable{
     private final float _preuEnviament = 1; // Enviament comanda normal = 1 euro
     private final long _tempsRebuda = 2; // Temps en rebre comanda normal = 2 dies
     
+    /**
+     * Constructor de la Classe ComandaNormal
+     * @param client
+     * @param article
+     * @param quantitat
+     */
     public ComandaNormal(Client client, Article article, int quantitat) {
         super(client, article, quantitat);
     }
 
+    /**
+     * Sobresciptura del metode de la classe Comanda que retorna el tipus = "Normal"
+     * @return
+     */
     @Override
     public String tipusComanda() {
         return "Normal";
     }
 
+    /**
+     * Sobresciptura del metode de la classe Comanda que retorna si una comanda ha sigut enviada
+     * @return
+     */
     @Override
     public boolean comandaEnviada() {
         Date dataActual = new Date();
@@ -35,6 +49,10 @@ public class ComandaNormal extends Comanda implements Serializable{
         return dataActual.after(dataEnviament);
     }
 
+    /**
+     * Sobresciptura del metode de la classe Comanda que retorna si una comanda ha sigut rebuda
+     * @return
+     */
     @Override
     public boolean comandaRebuda() {
         Date dataActual = new Date();
@@ -43,6 +61,10 @@ public class ComandaNormal extends Comanda implements Serializable{
         return dataActual.after(dataRebuda);
     }
 
+    /**
+     * Sobresciptura del metode de la classe Comanda que retorna el preu de enviament.
+     * @return
+     */
     @Override
     public float preuEnviament() {
         return _preuEnviament - (_preuEnviament * (_client.descompteEnv()/100));

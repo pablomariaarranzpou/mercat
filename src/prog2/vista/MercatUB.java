@@ -10,13 +10,16 @@ import java.util.Scanner;
 import prog2.controlador.Controlador;
 
 /**
- *
+ * Classe MercatUB que gestiona tota la Vista.
  * @author Pablo
  */
 public class MercatUB {
 
     Controlador _controlador;
 
+    /**
+     * Métode d´inici del Mercat.
+     */
     public void gestioMercatUb() {
         // Creación de un objeto para leer el input desde el teclado
         Scanner sc = new Scanner(System.in);
@@ -85,6 +88,10 @@ public class MercatUB {
         "Sortir", // Opcion 5
     };
 
+    /**
+     * Gestio del menú principal.
+     * @param sc
+     */
     public void gestioMenu(Scanner sc) {
         // Creación del objeto que representa el menu. El primer argumento del contructor es el nombre del menu
         Menu<OpcionesMenu> menuMercat = new Menu<>("Menu ", OpcionesMenu.values());
@@ -135,6 +142,10 @@ public class MercatUB {
         } while (opcionMenu != OpcionesMenu.M_Opcion_6_Salir);
     }
 
+    /**
+     * Gestio del menú secundari d´ Articles
+     * @param sc
+     */
     public void gestioMenuArticles(Scanner sc) {
         // Creación del objeto que representa el menu. El primer argumento del contructor es el nombre del menu
         Menu<MercatUB.OpcionesMenu_Articles> menuMercat = new Menu<>("Menu ", MercatUB.OpcionesMenu_Articles.values());
@@ -181,7 +192,12 @@ public class MercatUB {
 
         } while (opcionMenu != MercatUB.OpcionesMenu_Articles.M_Opcion_3_Salir);
     }
-
+    
+    /**
+     * Métode que comprova si admet urgent.
+     * @param sc
+     * @return 
+     */
     private boolean checkIfAdmetUrgent(Scanner sc) {
         boolean admetUrgent = false;
         System.out.println("Admet urgent? (S/N)");
@@ -207,6 +223,10 @@ public class MercatUB {
         return admetUrgent;
     }
 
+    /**
+     * Gestio del menú secundari de comandes
+     * @param sc
+     */
     public void gestioMenuComandes(Scanner sc) {
         // Creación del objeto que representa el menu. El primer argumento del contructor es el nombre del menu
         Menu<MercatUB.OpcionesMenu_Comandes> menuMercat = new Menu<>("Menu ", MercatUB.OpcionesMenu_Comandes.values());
@@ -281,7 +301,12 @@ public class MercatUB {
 
         } while (opcionMenu != MercatUB.OpcionesMenu_Comandes.M_Opcion_5_Salir);
     }
-
+    
+    /**
+     * Métode de suport per saber si es urgent
+     * @param sc
+     * @return 
+     */
     private boolean checkIfIsUrgent(Scanner sc) {
         boolean urgent = false;
         System.out.println("Es Urgent?(S/N)");
@@ -302,6 +327,10 @@ public class MercatUB {
         return urgent;
     }
 
+    /**
+     * Gestio del menú secundari de CLients
+     * @param sc
+     */
     public void gestioMenuClients(Scanner sc) {
         // Creación del objeto que representa el menu. El primer argumento del contructor es el nombre del menu
         Menu<MercatUB.OpcionesMenu_Clients> menuMercat = new Menu<>("Menu ", MercatUB.OpcionesMenu_Clients.values());
@@ -348,6 +377,12 @@ public class MercatUB {
         } while (opcionMenu != MercatUB.OpcionesMenu_Clients.M_Opcion_3_Salir);
 
     }
+    
+    /**
+     * Métode per a indicar si un Client és premium
+     * @param sc
+     * @return 
+     */
 
     private boolean checkIfPremium(Scanner sc) {
         String esPremium;

@@ -8,7 +8,7 @@ package prog2.model;
 import java.io.Serializable;
 
 /**
- *
+ * Classe abstracta que modelitza els clients de la botiga
  * @author Pablo
  */
 public abstract class Client implements Serializable{
@@ -17,47 +17,89 @@ public abstract class Client implements Serializable{
     String _correu;
     String _adreça;
 
+    /**
+     * Constructor de la classe Client
+     * @param nom
+     * @param correu
+     * @param adreça
+     */
     public Client(String nom, String correu, String adreça) {
         _nom = nom;
         _correu = correu;
         _adreça = adreça;
     }
 
+    /**
+     * Getter de ID
+     * @return
+     */
     public String getId() {
         return _nom;
     }
 
+    /**
+     * Setter de ID
+     * @param nom
+     */
     public void setId(String nom) {
         _nom = nom;
     }
 
+    /**
+     * Getter correu
+     * @return
+     */
     public String getCorreu() {
         return _correu;
     }
 
+    /**
+     * Setter correu
+     * @param correu
+     */
     public void setCorreu(String correu) {
         _correu = correu;
     }
 
+    /**
+     * Getter Adreça
+     * @return
+     */
     public String getAdreça() {
         return _adreça;
     }
 
+    /**
+     * Setter adreça
+     * @param adreça
+     */
     public void setAdreça(String adreça) {
         _adreça = adreça;
     }
 
+    /**
+     * Métode abstracte que retorna el tipus de client. S´ha de implementar a les clases derivades
+     * @return
+     */
     public abstract String tipusClient();
 
+    /**
+     * Metode abstracte que retorna el calcul mensual. S´ha de implementar a les clases derivades
+     * @return
+     */
     public abstract float calcMensual();
 
     /**
-     * Retorna el descompte d'enviament en percentatge.
+     * Retorna el descompte d'enviament en percentatge. S´ha de implementar a les clases derivades
      *
      * @return
      */
     public abstract float descompteEnv();
 
+    /**
+     * Métode toString de la classe CLient.
+     * @return
+     */
     @Override
     public String toString() {
         String s = "";
