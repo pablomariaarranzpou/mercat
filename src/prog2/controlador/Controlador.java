@@ -28,12 +28,12 @@ public class Controlador {
 
     /**
      * Métode que crida a Dades per afegir un Article
-     * @param id
-     * @param nom
-     * @param preu
-     * @param temps
-     * @param admetUrgent
-     * @throws MercatException
+     * @param id ID Article
+     * @param nom Nom de l´article
+     * @param preu Preu de l´article
+     * @param temps Temps de l´article
+     * @param admetUrgent Si admetUrgent o no.
+     * @throws MercatException 
      */
     public void addArticle(String id, String nom, float preu, int temps, boolean admetUrgent) throws MercatException {
         _dades.afegirArticle(id, nom, preu, temps, admetUrgent);
@@ -41,7 +41,7 @@ public class Controlador {
 
     /**
      * Métode que crida a Dades per Recuperar els Articles
-     * @return
+     * @return True si no esta buida i imprimeix els Articles
      */
     public boolean recuperarArticles() {
         List<String> llista = _dades.recuperaArticles();
@@ -57,10 +57,10 @@ public class Controlador {
 
     /**
      * Métode que crida a Dades per afegir un Client
-     * @param email
-     * @param nom
-     * @param adreca
-     * @param esPremium
+     * @param email Email del client
+     * @param nom Nom del client
+     * @param adreca Adreça del client
+     * @param esPremium true si es premium el client
      * @throws MercatException
      */
     public void addClient(String email, String nom, String adreca, boolean esPremium) throws MercatException {
@@ -69,7 +69,7 @@ public class Controlador {
 
     /**
      * Métode que crida a Dades per imprimir llista clients
-     * @return
+     * @return True si no esta buida i imprimeix els Clients
      */
     public boolean recuperarClients() {
         List<String> llista = _dades.recuperaClients();
@@ -85,10 +85,10 @@ public class Controlador {
 
     /** 
      * Métode que crida a Dades per afegir una comanda.
-     * @param articlePos
-     * @param clientPos
-     * @param quantitat
-     * @param esUrgent
+     * @param articlePos Posicio del article a LlistaArticles
+     * @param clientPos Posicio del client a LlistaClients
+     * @param quantitat Quantitat
+     * @param esUrgent True si es urgent
      * @throws MercatException
      */
     public void addComanda(int articlePos, int clientPos, int quantitat, boolean esUrgent) throws MercatException {
@@ -97,7 +97,7 @@ public class Controlador {
 
     /**
      * Métode que crida a Dades per imprimir totes les Comandes
-     * @return
+     * @return True si no esta buida i imprimeix les COmandes
      */
     public boolean recuperarComandes() {
         List<String> llista = _dades.recuperaComandes();
@@ -113,7 +113,7 @@ public class Controlador {
 
     /**
      * Métode que crida a Dades per esborrar una comanda.
-     * @param pos
+     * @param pos Posicio de la COmanda a LlistaComandes
      * @throws MercatException
      */
     public void eliminarComanda(int pos) throws MercatException {
@@ -122,7 +122,7 @@ public class Controlador {
 
     /**
      * Métode que crida a Dades per imprimir les comandes urgents.
-     * @return
+     * @return True si no esta buida i imprimeix les comandes urgents.
      */
     public boolean recuperarComandesUrgents() {
         List<String> llista = _dades.recuperaComandesUrgents();

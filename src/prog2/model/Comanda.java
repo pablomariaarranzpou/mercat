@@ -13,10 +13,10 @@ import java.util.Date;
  * @author Pablo
  */
 public abstract class Comanda implements Serializable{
-    Client _client;
-    Article _article;
-    int _quantitat;
-    Date _creacioComanda;
+    private Client _client;
+    private Article _article;
+    private int _quantitat;
+    private Date _creacioComanda;
     
     /**
      * Constructor de la classe comanda
@@ -37,6 +37,30 @@ public abstract class Comanda implements Serializable{
      */
     public float calcPreu(){
         return _article.getPreu() * _quantitat;
+    }
+
+    public Client getClient() {
+        return _client;
+    }
+
+    public void setClient(Client _client) {
+        this._client = _client;
+    }
+
+    public int getQuantitat() {
+        return _quantitat;
+    }
+
+    public void setQuantitat(int _quantitat) {
+        this._quantitat = _quantitat;
+    }
+
+    public Date getCreacioComanda() {
+        return _creacioComanda;
+    }
+
+    public void setCreacioComanda(Date _creacioComanda) {
+        this._creacioComanda = _creacioComanda;
     }
     
     /**

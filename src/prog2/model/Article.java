@@ -9,19 +9,23 @@ import java.io.Serializable;
 import java.util.concurrent.TimeUnit;
 
 /**
- *
+ * Classe que modelitza els articles de la botiga.
  * @author Pablo
  */
 public class Article implements Serializable{
 
-    String _identificador;
-    String _nom;
-    float _preu;
-    boolean _permetEnviamentUrgent;
-    long _tempsFinsEnviament;
+    private String _identificador;
+    private String _nom;
+    private float _preu;
+    private boolean _permetEnviamentUrgent;
+    private long _tempsFinsEnviament;
+
+    public boolean isPermetEnviamentUrgent() {
+        return _permetEnviamentUrgent;
+    }
 
     /**
-     *
+     * Consturctor d ela classe Article
      * @param identificador
      * @param nom
      * @param preu
@@ -38,15 +42,15 @@ public class Article implements Serializable{
     }
 
     /**
-     *
-     * @return
+     * Getter de l´identificador
+     * @return IDNETIFICADOR
      */
     public String getIdentificador() {
         return _identificador;
     }
 
     /**
-     *
+     * Setter d el´identificador
      * @param identificador
      */
     public void setIdentificador(String identificador) {
@@ -54,15 +58,15 @@ public class Article implements Serializable{
     }
 
     /**
-     *
-     * @return
+     * Getter del Nom de l´asrticle
+     * @return NOM
      */
     public String getNom() {
         return _nom;
     }
 
     /**
-     *
+     * Setter del nom de l´article
      * @param nom
      */
     public void setNom(String nom) {
@@ -70,15 +74,15 @@ public class Article implements Serializable{
     }
 
     /**
-     *
-     * @return
+     * Getter del preu de l´article
+     * @return PREU
      */
     public float getPreu() {
         return _preu;
     }
 
     /**
-     *
+     * Setter del preu de l´article
      * @param preu
      */
     public void setPreu(float preu) {
@@ -86,7 +90,7 @@ public class Article implements Serializable{
     }
 
     /**
-     *
+     * 
      * @return
      */
     public boolean permetEnviamentUrgent() {
@@ -104,7 +108,7 @@ public class Article implements Serializable{
     /**
      * Retorna en milisegons el temps fins enviament de l'article.
      *
-     * @return
+     * @return Milisegons d´enviament
      */
     public long getTempsFinsEnviament() {
         return TimeUnit.DAYS.toMillis(_tempsFinsEnviament);

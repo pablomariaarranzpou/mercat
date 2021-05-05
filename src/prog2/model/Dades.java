@@ -23,9 +23,33 @@ import prog2.vista.MercatException;
  */
 public class Dades implements InDades, Serializable {
 
-    LlistaArticles _llistaArticles;
-    LlistaClients _llistaClients;
-    LlistaComandes _llistaComandes;
+    private LlistaArticles _llistaArticles;
+    private LlistaClients _llistaClients;
+    private LlistaComandes _llistaComandes;
+
+    public LlistaArticles getLlistaArticles() {
+        return _llistaArticles;
+    }
+
+    public void setLlistaArticles(LlistaArticles _llistaArticles) {
+        this._llistaArticles = _llistaArticles;
+    }
+
+    public LlistaClients getLlistaClients() {
+        return _llistaClients;
+    }
+
+    public void setLlistaClients(LlistaClients _llistaClients) {
+        this._llistaClients = _llistaClients;
+    }
+
+    public LlistaComandes getLlistaComandes() {
+        return _llistaComandes;
+    }
+
+    public void setLlistaComandes(LlistaComandes _llistaComandes) {
+        this._llistaComandes = _llistaComandes;
+    }
 
     /**
      * Constructor de classe Dades

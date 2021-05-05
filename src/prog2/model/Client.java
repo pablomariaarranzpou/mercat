@@ -13,9 +13,17 @@ import java.io.Serializable;
  */
 public abstract class Client implements Serializable{
 
-    String _nom;
-    String _correu;
-    String _adreça;
+    private String _nom;
+    private String _correu;
+    private String _adreça;
+
+    public String getNom() {
+        return _nom;
+    }
+
+    public void setNom(String _nom) {
+        this._nom = _nom;
+    }
 
     /**
      * Constructor de la classe Client
