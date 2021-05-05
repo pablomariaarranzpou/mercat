@@ -13,10 +13,10 @@ import java.util.Date;
  * @author Pablo
  */
 public abstract class Comanda implements Serializable{
-    private Client _client;
-    private Article _article;
-    private int _quantitat;
-    private Date _creacioComanda;
+    protected Client _client;
+    protected Article _article;
+    protected int _quantitat;
+    protected Date _creacioComanda;
     
     /**
      * Constructor de la classe comanda

@@ -26,11 +26,11 @@ public class Article implements Serializable{
 
     /**
      * Consturctor d ela classe Article
-     * @param identificador
-     * @param nom
-     * @param preu
-     * @param tempsFinsEnviament
-     * @param permetEnviamentUrgent
+     * @param identificador identificador de l´article
+     * @param nom Nom de l´article
+     * @param preu Preu de l´article
+     * @param tempsFinsEnviament Temps fins enviament de l´article 
+     * @param permetEnviamentUrgent Lárticle admet enviament urgent.
      */
     public Article(String identificador, String nom, float preu,
             long tempsFinsEnviament, boolean permetEnviamentUrgent) {
