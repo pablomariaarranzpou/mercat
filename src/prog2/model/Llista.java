@@ -36,7 +36,7 @@ public class Llista<T> implements Serializable {
 
     /**
      * Afegir un element a la llista.
-     * @param t
+     * @param t Objecte a afegir a la llista.
      * @throws MercatException
      */
     public void afegir(T t) throws MercatException {
@@ -45,7 +45,7 @@ public class Llista<T> implements Serializable {
 
     /**
      * Esborrar un element de la llista.
-     * @param t
+     * @param t Objecte a esborrar de la llista.
      * @throws MercatException
      */
     public void esborrar(T t) throws MercatException {
@@ -54,7 +54,7 @@ public class Llista<T> implements Serializable {
     
     /**
      * Retrona un element d´una poscició en concret
-     * @param position
+     * @param position Posició de l'objecte que cerquem a la llista.
      * @return
      */
     public T getAt(int position) {

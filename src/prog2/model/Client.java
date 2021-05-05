@@ -9,37 +9,40 @@ import java.io.Serializable;
 
 /**
  * Classe abstracta que modelitza els clients de la botiga
+ *
  * @author Pablo
  */
-public abstract class Client implements Serializable{
+public abstract class Client implements Serializable {
 
     protected String _nom;
     protected String _correu;
-    protected String _adreça;
+    protected String _adreca;
 
     public String getNom() {
         return _nom;
     }
 
-    public void setNom(String _nom) {
-        this._nom = _nom;
+    public void setNom(String nom) {
+        _nom = nom;
     }
 
     /**
      * Constructor de la classe Client
-     * @param nom
-     * @param correu
-     * @param adreça
+     *
+     * @param nom Nom del client
+     * @param correu Correu del client
+     * @param adreça Adreça del client
      */
     public Client(String nom, String correu, String adreça) {
         _nom = nom;
         _correu = correu;
-        _adreça = adreça;
+        _adreca = adreça;
     }
 
     /**
      * Getter de ID
-     * @return
+     *
+     * @return Retorna la ID del client
      */
     public String getId() {
         return _nom;
@@ -47,7 +50,8 @@ public abstract class Client implements Serializable{
 
     /**
      * Setter de ID
-     * @param nom
+     *
+     * @param nom Canvia el nom del client
      */
     public void setId(String nom) {
         _nom = nom;
@@ -55,7 +59,8 @@ public abstract class Client implements Serializable{
 
     /**
      * Getter correu
-     * @return
+     *
+     * @return Retorna el correu del client
      */
     public String getCorreu() {
         return _correu;
@@ -63,7 +68,8 @@ public abstract class Client implements Serializable{
 
     /**
      * Setter correu
-     * @param correu
+     *
+     * @param correu Canvia el correu del client
      */
     public void setCorreu(String correu) {
         _correu = correu;
@@ -71,42 +77,50 @@ public abstract class Client implements Serializable{
 
     /**
      * Getter Adreça
-     * @return
+     *
+     * @return Retorna l'adreça del client
      */
     public String getAdreça() {
-        return _adreça;
+        return _adreca;
     }
 
     /**
      * Setter adreça
-     * @param adreça
+     *
+     * @param adreça Canvia l'adreça del client
      */
     public void setAdreça(String adreça) {
-        _adreça = adreça;
+        _adreca = adreça;
     }
 
     /**
-     * Métode abstracte que retorna el tipus de client. S´ha de implementar a les clases derivades
-     * @return
+     * Métode abstracte que retorna el tipus de client. S´ha de implementar a
+     * les clases derivades
+     *
+     * @return String que indica el tipus de client, si Estandard o Premium.
      */
     public abstract String tipusClient();
 
     /**
-     * Metode abstracte que retorna el calcul mensual. S´ha de implementar a les clases derivades
-     * @return
+     * Metode abstracte que retorna el calcul mensual. S´ha de implementar a les
+     * clases derivades
+     *
+     * @return float de la mensualitat del client.
      */
     public abstract float calcMensual();
 
     /**
-     * Retorna el descompte d'enviament en percentatge. S´ha de implementar a les clases derivades
+     * Retorna el descompte d'enviament en percentatge. S´ha de implementar a
+     * les clases derivades
      *
-     * @return
+     * @return float que representa el percentatge de descompte.
      */
     public abstract float descompteEnv();
 
     /**
      * Métode toString de la classe CLient.
-     * @return
+     *
+     * @return String que conté tota la informació del client.
      */
     @Override
     public String toString() {
@@ -114,7 +128,7 @@ public abstract class Client implements Serializable{
         s += "Tipus=" + tipusClient();
         s += ", Email=" + _correu;
         s += ", Nom=" + _nom;
-        s += ", Adreça=" + _adreça;
+        s += ", Adreça=" + _adreca;
         s += ", Descompte Enviament=" + descompteEnv();
         s += ", Mensualitat=" + calcMensual();
         return s;

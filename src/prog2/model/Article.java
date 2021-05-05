@@ -10,9 +10,10 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Classe que modelitza els articles de la botiga.
+ *
  * @author Pablo
  */
-public class Article implements Serializable{
+public class Article implements Serializable {
 
     private String _identificador;
     private String _nom;
@@ -26,10 +27,11 @@ public class Article implements Serializable{
 
     /**
      * Consturctor d ela classe Article
+     *
      * @param identificador identificador de l´article
      * @param nom Nom de l´article
      * @param preu Preu de l´article
-     * @param tempsFinsEnviament Temps fins enviament de l´article 
+     * @param tempsFinsEnviament Temps fins enviament de l´article
      * @param permetEnviamentUrgent Lárticle admet enviament urgent.
      */
     public Article(String identificador, String nom, float preu,
@@ -43,7 +45,8 @@ public class Article implements Serializable{
 
     /**
      * Getter de l´identificador
-     * @return IDNETIFICADOR
+     *
+     * @return IDENTIFICADOR
      */
     public String getIdentificador() {
         return _identificador;
@@ -51,6 +54,7 @@ public class Article implements Serializable{
 
     /**
      * Setter d el´identificador
+     *
      * @param identificador
      */
     public void setIdentificador(String identificador) {
@@ -59,6 +63,7 @@ public class Article implements Serializable{
 
     /**
      * Getter del Nom de l´asrticle
+     *
      * @return NOM
      */
     public String getNom() {
@@ -67,6 +72,7 @@ public class Article implements Serializable{
 
     /**
      * Setter del nom de l´article
+     *
      * @param nom
      */
     public void setNom(String nom) {
@@ -75,6 +81,7 @@ public class Article implements Serializable{
 
     /**
      * Getter del preu de l´article
+     *
      * @return PREU
      */
     public float getPreu() {
@@ -83,6 +90,7 @@ public class Article implements Serializable{
 
     /**
      * Setter del preu de l´article
+     *
      * @param preu
      */
     public void setPreu(float preu) {
@@ -90,7 +98,8 @@ public class Article implements Serializable{
     }
 
     /**
-     * 
+     * Retorna un booleà que indica si l'article permet enviament urgent o no.
+     *
      * @return
      */
     public boolean permetEnviamentUrgent() {
@@ -98,6 +107,7 @@ public class Article implements Serializable{
     }
 
     /**
+     * Setter de permetEnviamentUrgent
      *
      * @param permetEnviamentUrgent
      */
@@ -115,6 +125,7 @@ public class Article implements Serializable{
     }
 
     /**
+     * Setter de tempsFinsEnviament.
      *
      * @param tempsFinsEnviament
      */
@@ -123,8 +134,9 @@ public class Article implements Serializable{
     }
 
     /**
+     * Override del mètode toString()
      *
-     * @return
+     * @return Retorna una string amb tota la informació de l'article.
      */
     @Override
     public String toString() {

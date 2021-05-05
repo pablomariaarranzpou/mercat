@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="flux">
+  <ClassDiagramComponents>
+    <Class name="IniciadorMercatUB" package="" visibility="public" xPosition="24.0" yPosition="45.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="MercatUB" package="" visibility="public" xPosition="222.0" yPosition="45.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="gestioMercatUB" returnType="void" visibility="public"/>
+        <Method name="gestioMenu" returnType="void" visibility="public"/>
+        <Method name="gestioMenuArticles" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Controlador" package="" visibility="public" xPosition="441.0" yPosition="45.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="addArticle" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Dades" package="" visibility="public" xPosition="235.0" yPosition="232.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="afegirArticle" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="LlistaArticles" package="" visibility="public" xPosition="24.0" yPosition="233.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="afegir" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="llista" package="" visibility="public" xPosition="24.0" yPosition="385.0">
+      <Fields/>
+      <Constructors/>
+      <Methods/>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations/>
+</ClassDiagram>

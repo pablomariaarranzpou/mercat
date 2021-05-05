@@ -9,12 +9,14 @@ import java.io.Serializable;
 
 /**
  * Classe Derivada de la classe Client
+ *
  * @author Pablo
  */
-public class ClientPremium extends Client implements Serializable{
+public class ClientPremium extends Client implements Serializable {
 
     /**
      * Constructor de la Classe CLientPremium
+     *
      * @param nom
      * @param correu
      * @param adreça
@@ -24,7 +26,9 @@ public class ClientPremium extends Client implements Serializable{
     }
 
     /**
-     * Sobresciptura del metode de la classe Client que retorna la String amb Premium
+     * Sobresciptura del metode de la classe Client que retorna la String amb
+     * Premium
+     *
      * @return
      */
     @Override
@@ -33,17 +37,21 @@ public class ClientPremium extends Client implements Serializable{
     }
 
     /**
-     * Sobresciptura del metode de la classe Client que retorna el cacul mensual = 4.0.
+     * Sobresciptura del metode de la classe Client que retorna el cacul mensual
+     * = 4.0.
+     *
      * @return
      */
     @Override
     public float calcMensual() {
         return 4f; // Els clients premium paguen una mensualitat de 4 euros.
     }
-    
+
     /**
-     * Sobresciptura del metode de la classe Client que retorna el descompte d´enviament -20%.
-     * @return 
+     * Sobresciptura del metode de la classe Client que retorna el descompte
+     * d´enviament -20%.
+     *
+     * @return
      */
     @Override
     public float descompteEnv() {

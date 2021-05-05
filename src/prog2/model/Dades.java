@@ -19,6 +19,7 @@ import prog2.vista.MercatException;
 
 /**
  * Classe façana entre el model i el controlador
+ *
  * @author Pablo
  */
 public class Dades implements InDades, Serializable {
@@ -26,30 +27,6 @@ public class Dades implements InDades, Serializable {
     private LlistaArticles _llistaArticles;
     private LlistaClients _llistaClients;
     private LlistaComandes _llistaComandes;
-
-    public LlistaArticles getLlistaArticles() {
-        return _llistaArticles;
-    }
-
-    public void setLlistaArticles(LlistaArticles _llistaArticles) {
-        this._llistaArticles = _llistaArticles;
-    }
-
-    public LlistaClients getLlistaClients() {
-        return _llistaClients;
-    }
-
-    public void setLlistaClients(LlistaClients _llistaClients) {
-        this._llistaClients = _llistaClients;
-    }
-
-    public LlistaComandes getLlistaComandes() {
-        return _llistaComandes;
-    }
-
-    public void setLlistaComandes(LlistaComandes _llistaComandes) {
-        this._llistaComandes = _llistaComandes;
-    }
 
     /**
      * Constructor de classe Dades
@@ -62,12 +39,13 @@ public class Dades implements InDades, Serializable {
 
     /**
      * Afegir article a objecte LlistaArticles
-     * @param id
-     * @param nom
-     * @param preu
-     * @param temps
-     * @param admetUrgent
-     * @throws MercatException
+     *
+     * @param id Identificador de l'article.
+     * @param nom Nom de l'article.
+     * @param preu Preu de l'article.
+     * @param temps Temps fins l'enviament de l'article.
+     * @param admetUrgent Si l'article admet enviament urgent o no.
+     * @throws MercatException Si l'article ja existeix, es tira excepció.
      */
     @Override
     public void afegirArticle(String id, String nom, float preu, int temps, boolean admetUrgent) throws MercatException {
@@ -76,7 +54,8 @@ public class Dades implements InDades, Serializable {
 
     /**
      * Retorna llista amb els toString de cada Article
-     * @return
+     *
+     * @return List<String> amb els articles existents.
      */
     @Override
     public List<String> recuperaArticles() {
@@ -93,11 +72,12 @@ public class Dades implements InDades, Serializable {
 
     /**
      * Afegir Client a objecte LlistaClients
-     * @param email
-     * @param nom
-     * @param adreca
-     * @param esPremium
-     * @throws MercatException
+     *
+     * @param email Correu del client.
+     * @param nom Nom del client.
+     * @param adreca Adreça del client.
+     * @param esPremium Indica si el client és premium o no.
+     * @throws MercatException Si el client ja existeix, es tira excepció.
      */
     @Override
     public void afegirClient(String email, String nom, String adreca, boolean esPremium) throws MercatException {
@@ -112,7 +92,8 @@ public class Dades implements InDades, Serializable {
 
     /**
      * Retorna llista amb els toString de cada Client
-     * @return
+     *
+     * @return List<String> amb els clients existents.
      */
     @Override
     public List<String> recuperaClients() {
@@ -127,11 +108,12 @@ public class Dades implements InDades, Serializable {
 
     /**
      * Afegir Comanda a objecte LlistaComandes
-     * @param articlePos
-     * @param clientPos
-     * @param quantitat
-     * @param esUrgent
-     * @throws MercatException
+     *
+     * @param articlePos Posició de l'article en la llista.
+     * @param clientPos Posició del client en la llista.
+     * @param quantitat Quantitat de l'article.
+     * @param esUrgent Indica si la comanda és urgent o no.
+     * @throws MercatException Si la comanda és urgent però l'article no ho permet, es tira excepció.
      */
     @Override
     public void afegirComanda(int articlePos, int clientPos, int quantitat, boolean esUrgent) throws MercatException {
@@ -148,7 +130,8 @@ public class Dades implements InDades, Serializable {
 
     /**
      * Esborra una Comanda a objecte LlistaComandes
-     * @param position
+     *
+     * @param position Posició de la comanda en la llista.
      * @throws MercatException
      */
     @Override
@@ -158,7 +141,8 @@ public class Dades implements InDades, Serializable {
 
     /**
      * Retorna una llista amb els toString de TOTES les comandes.
-     * @return
+     *
+     * @return List<String> amb les comandes existents.
      */
     @Override
     public List<String> recuperaComandes() {
@@ -173,7 +157,8 @@ public class Dades implements InDades, Serializable {
 
     /**
      * Retorna una llista amb els toString de NOMES les comandes urgents.
-     * @return
+     *
+     * @return List<String> amb les comandes urgents existents.
      */
     @Override
     public List<String> recuperaComandesUrgents() {
@@ -190,7 +175,8 @@ public class Dades implements InDades, Serializable {
 
     /**
      * Métode per guardar dades d´un fitxer
-     * @param path
+     *
+     * @param path Path al fitxer.
      * @throws FileNotFoundException
      * @throws IOException
      */
@@ -207,8 +193,9 @@ public class Dades implements InDades, Serializable {
 
     /**
      * Métode per recuperar dades d´un fitxer
-     * @param path
-     * @return
+     *
+     * @param path Path al fitxer.
+     * @return Retorna un objecte Dades.
      * @throws IOException
      * @throws ClassNotFoundException
      */

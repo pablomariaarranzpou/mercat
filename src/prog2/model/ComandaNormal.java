@@ -11,15 +11,17 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Classe que hereta de Comanda, i modelitza una comanda normal
+ *
  * @author janal
  */
-public class ComandaNormal extends Comanda implements Serializable{
+public class ComandaNormal extends Comanda implements Serializable {
 
     private final float _preuEnviament = 1; // Enviament comanda normal = 1 euro
     private final long _tempsRebuda = 2; // Temps en rebre comanda normal = 2 dies
-    
+
     /**
      * Constructor de la Classe ComandaNormal
+     *
      * @param client
      * @param article
      * @param quantitat
@@ -29,7 +31,9 @@ public class ComandaNormal extends Comanda implements Serializable{
     }
 
     /**
-     * Sobresciptura del metode de la classe Comanda que retorna el tipus = "Normal"
+     * Sobresciptura del metode de la classe Comanda que retorna el tipus =
+     * "Normal"
+     *
      * @return
      */
     @Override
@@ -38,7 +42,9 @@ public class ComandaNormal extends Comanda implements Serializable{
     }
 
     /**
-     * Sobresciptura del metode de la classe Comanda que retorna si una comanda ha sigut enviada
+     * Sobresciptura del metode de la classe Comanda que retorna si una comanda
+     * ha sigut enviada
+     *
      * @return
      */
     @Override
@@ -51,7 +57,9 @@ public class ComandaNormal extends Comanda implements Serializable{
     }
 
     /**
-     * Sobresciptura del metode de la classe Comanda que retorna si una comanda ha sigut rebuda
+     * Sobresciptura del metode de la classe Comanda que retorna si una comanda
+     * ha sigut rebuda
+     *
      * @return
      */
     @Override
@@ -64,13 +72,15 @@ public class ComandaNormal extends Comanda implements Serializable{
     }
 
     /**
-     * Sobresciptura del metode de la classe Comanda que retorna el preu de enviament.
+     * Sobresciptura del metode de la classe Comanda que retorna el preu de
+     * enviament.
+     *
      * @return
      */
     @Override
     public float preuEnviament() {
         Comanda comanda = (Comanda) this;
-        return _preuEnviament - (_preuEnviament * (comanda.getClient().descompteEnv()/100));
+        return _preuEnviament - (_preuEnviament * (comanda.getClient().descompteEnv() / 100));
     }
 
 }
