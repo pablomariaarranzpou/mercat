@@ -265,7 +265,7 @@ public class MercatUB {
 
                     try {
                         _controlador.addComanda(posArticle, posClient, quantitat, urgent);
-                    } catch (MercatException ex) {
+                    } catch (MercatException | ArrayIndexOutOfBoundsException ex) {
                         System.err.println(ex.getMessage());
                     }
                     break;

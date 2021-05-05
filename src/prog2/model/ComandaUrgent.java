@@ -50,9 +50,8 @@ public class ComandaUrgent extends Comanda implements Serializable {
     @Override
     public boolean comandaEnviada() {
         Date dataActual = new Date();
-        Comanda comanda = (Comanda) this;
         // Trobem la data d'enviament sumant la data de creació més el temps fins enviaments
-        Date dataEnviament = new Date(comanda.getCreacioComanda().getTime() + comanda.getArticle().getTempsFinsEnviament() / 2);
+        Date dataEnviament = new Date(this._creacioComanda.getTime() + this._article.getTempsFinsEnviament() / 2);
         return dataActual.after(dataEnviament);
     }
 
@@ -65,9 +64,8 @@ public class ComandaUrgent extends Comanda implements Serializable {
     @Override
     public boolean comandaRebuda() {
         Date dataActual = new Date();
-        Comanda comanda = (Comanda) this;
         // Trobem la data d'enviament sumant la data de creació més el temps fins enviaments
-        Date dataRebuda = new Date(comanda.getCreacioComanda().getTime() + TimeUnit.DAYS.toMillis(_tempsRebuda));
+        Date dataRebuda = new Date(this._creacioComanda.getTime() + TimeUnit.DAYS.toMillis(_tempsRebuda));
         return dataActual.after(dataRebuda);
     }
 
@@ -79,8 +77,7 @@ public class ComandaUrgent extends Comanda implements Serializable {
      */
     @Override
     public float preuEnviament() {
-        Comanda comanda = (Comanda) this;
-        return _preuEnviament - (_preuEnviament * (comanda.preuEnviament() / 100));
+        return _preuEnviament - (_preuEnviament * (this._client.descompteEnv() / 100));
     }
 
 }
