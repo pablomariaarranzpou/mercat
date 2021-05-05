@@ -274,12 +274,12 @@ public class MercatUB {
                     if(!_controlador.recuperarComandes()){
                         System.out.println("No hi ha comandes a mostrar.");
                     }
-                    System.out.println("Quina comanda vol eliminar?");
-                    int pos = sc.nextInt();
+                    System.out.println("Quina comanda vol eliminar? (posicio)");
+                    int pos = sc.nextInt() - 1;
 
                     try {
                         _controlador.eliminarComanda(pos);
-                    } catch (MercatException ex) {
+                    } catch (MercatException | ArrayIndexOutOfBoundsException ex) {
                         System.err.println(ex.getMessage());
                     }
                     break;

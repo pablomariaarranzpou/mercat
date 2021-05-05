@@ -101,7 +101,7 @@ public class Controlador {
      */
     public boolean recuperarComandes() {
         List<String> llista = _dades.recuperaComandes();
-        if (!llista.isEmpty()) {
+        if (llista.isEmpty()) {
             return false;
         }
         Iterator it = llista.iterator();
@@ -126,7 +126,7 @@ public class Controlador {
      */
     public boolean recuperarComandesUrgents() {
         List<String> llista = _dades.recuperaComandesUrgents();
-        if(!llista.isEmpty()) return false;
+        if(llista.isEmpty()) return false;
         Iterator it = llista.iterator();
         while(it.hasNext()) {
             System.out.println(it.next());
