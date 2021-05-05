@@ -225,7 +225,7 @@ public class MercatUB {
 
     /**
      * Gestio del menú secundari de comandes
-     * @param sc
+     * @param sc Scanner per escriure per consola
      */
     public void gestioMenuComandes(Scanner sc) {
         // Creación del objeto que representa el menu. El primer argumento del contructor es el nombre del menu
